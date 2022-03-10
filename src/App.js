@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SearchBar from './components/SearchBar';
 import ShoppingCard from './components/ShoppingCard';
 import Input from './components/Input';
+import Category from './components/Categories';
 
 class App extends React.Component {
   render() {
@@ -18,9 +19,9 @@ class App extends React.Component {
         </div>
         <div className="App">
           <Input />
+          <Category />
         </div>
       </>
-
     );
   }
 }
