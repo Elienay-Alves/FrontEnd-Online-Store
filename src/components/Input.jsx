@@ -1,5 +1,7 @@
 import React from 'react';
 import Button from './Button';
+import { getProductsFromTerm } from '../services/api';
+import Card from './Card';
 
 class Input extends React.Component {
   constructor() {
@@ -7,6 +9,8 @@ class Input extends React.Component {
 
     this.state = {
       value: '',
+      results: [],
+      xablau: false,
     };
   }
 
@@ -17,8 +21,20 @@ class Input extends React.Component {
     });
   }
 
-  render() {
+  handleClick = async (e) => {
     const { value } = this.state;
+    e.preventDefault();
+    const response = await getProductsFromTerm(value);
+    const result = response.results;
+    console.log(result);
+    this.setState({
+      results: result,
+      xablau: true,
+    });
+  }
+
+  render() {
+    const { value, results, xablau } = this.state;
     return (
       <div>
         <label data-testid="home-initial-message" htmlFor="initial-message">
@@ -31,11 +47,19 @@ class Input extends React.Component {
             onChange={ this.handleChangeInput }
             data-testid="query-input"
           />
+          <button
+            type="submit"
+            data-testid="query-button"
+            onClick={ this.handleClick }
+          >
+            Pesquisar
+          </button>
         </label>
 
         <div>
           <Button />
         </div>
+        {xablau ? results.map((obj) => <Card search={ obj } key={ obj.id } />) : null }
       </div>
     );
   }

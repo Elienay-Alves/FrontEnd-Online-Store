@@ -6,7 +6,7 @@ class Card extends Component {
     const { search } = this.props;
     return (
       <section data-testid="product">
-        <p>{ search.title }</p>
+        <p className="">{ search.title }</p>
         <img src={ search.thumbnail } alt={ search.title } />
         <p>{ search.price }</p>
       </section>

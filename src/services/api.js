@@ -4,7 +4,7 @@ export async function getCategories() {
     const URL = 'https://api.mercadolibre.com/sites/MLB/categories';
     const promise = await fetch(URL);
     const response = await promise.json();
-    console.log(response);
+
     return response;
   } catch (err) {
     return Error(err);
@@ -17,7 +17,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     const URL = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`;
     const promise = await fetch(URL);
     const response = await promise.json();
-    console.log(response);
+
     return response;
   } catch (err) {
     return Error(err);
@@ -29,7 +29,7 @@ export async function getProductsFromTerm(search) {
     const URL = `https://api.mercadolibre.com/sites/MLB/search?q=${search}`;
     const promise = await fetch(URL);
     const response = await promise.json();
-    console.log(response);
+
     return response;
   } catch (err) {
     return Error(err);

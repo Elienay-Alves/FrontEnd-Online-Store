@@ -1,32 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Input from './components/Input';
 import ShoppingCard from './components/ShoppingCard';
-import { getProductsFromTerm } from './services/api';
+import Categories from './components/Categories';
+import Home from './components/Home';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      search: '',
-      items: [],
-    };
-  }
-
-  handleClick = (e) => {
-    const { search } = this.state;
-    e.preventDefault();
-    const teste = getProductsFromTerm(search);
-    console.log(teste);
-  }
-
   render() {
     return (
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={ Input } />
+            <Route exact path="/" component={ Home } />
             <Route path="/shoppingcard" component={ ShoppingCard } />
+            <Route path="/categories" component={ Categories } />
           </Switch>
         </BrowserRouter>
       </div>
