@@ -1,29 +1,25 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import SearchBar from './components/SearchBar';
 import ShoppingCard from './components/ShoppingCard';
-import Input from './components/Input';
-import Category from './components/Categories';
+import Categories from './components/Categories';
+import Home from './components/Home';
 
 class App extends React.Component {
   render() {
     return (
-      <>
-        <div>
-          <BrowserRouter>
-            <Switch>
-              <Route exact path="/" component={ SearchBar } />
-              <Route path="/shoppingcard" component={ ShoppingCard } />
-            </Switch>
-          </BrowserRouter>
-        </div>
-        <div className="App">
-          <Input />
-          <Category />
-        </div>
-      </>
+      <div>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={ Home } />
+            <Route path="/shoppingcard" component={ ShoppingCard } />
+            <Route path="/categories" component={ Categories } />
+          </Switch>
+        </BrowserRouter>
+      </div>
+
     );
   }
 }
+// Olá
 
 export default App;

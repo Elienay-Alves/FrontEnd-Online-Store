@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
 
-class Category extends Component {
+class Categories extends Component {
   constructor(props) {
     super(props);
 
@@ -40,6 +40,6 @@ class Category extends Component {
   }
 }
 
-export default Category;
+export default Categories;
 
 // xablau
