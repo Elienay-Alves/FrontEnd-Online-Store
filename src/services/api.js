@@ -23,3 +23,15 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     return Error(err);
   }
 }
+
+export async function getProductsFromTerm(search) {
+  try {
+    const URL = `https://api.mercadolibre.com/sites/MLB/search?q=${search}`;
+    const promise = await fetch(URL);
+    const response = await promise.json();
+    console.log(response);
+    return response;
+  } catch (err) {
+    return Error(err);
+  }
+}

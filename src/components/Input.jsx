@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 
 class Input extends React.Component {
   constructor() {
@@ -20,15 +21,21 @@ class Input extends React.Component {
     const { value } = this.state;
     return (
       <div>
-        <input
-          type="text"
-          name="input-text"
-          value={ value }
-          onChange={ this.handleChangeInput }
-        />
-        <h1 data-testid="home-initial-message">
+        <label data-testid="home-initial-message" htmlFor="initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
-        </h1>
+          <input
+            type="text"
+            id="initial-message"
+            name="input-text"
+            value={ value }
+            onChange={ this.handleChangeInput }
+            data-testid="query-input"
+          />
+        </label>
+
+        <div>
+          <Button />
+        </div>
       </div>
     );
   }
