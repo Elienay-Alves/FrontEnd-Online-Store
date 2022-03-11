@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { getCategories, getProductsfromCategory } from '../services/api';
+import { getCategories,
+  getProductsfromCategory, getProductFromID } from '../services/api';
 import Card from '../components/Card';
 
 class Categories extends Component {
@@ -10,6 +11,7 @@ class Categories extends Component {
       categories: [],
       products: [],
       clicked: false,
+      addCart: [],
     };
   }
 
@@ -21,6 +23,16 @@ class Categories extends Component {
     const requisition = await getCategories();
     this.setState({
       categories: [...requisition],
+    });
+  }
+
+  handleClickCard = async ({ target }) => {
+    const fetch = await getProductFromID(target.id);
+    const { addCart } = this.state;
+    localStorage.setItem('productCart', JSON.stringify([...addCart, fetch]));
+    this.setState({
+      addCart: [...addCart, fetch],
+      clicked: true,
     });
   }
 
@@ -66,7 +78,13 @@ class Categories extends Component {
         </aside>
         <div className="cards-container">
           {!clicked ? null
-            : products.map((obj) => <Card key={ obj.id } search={ obj } />)}
+            : products.map((obj) => (
+              <Card
+                key={ obj.id }
+                search={ obj }
+                onClick={ this.handleClickCard }
+              />
+            ))}
           {/* Css foi pro espaço agora, meus jovens! kkkk */}
         </div>
       </div>

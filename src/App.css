@@ -30,6 +30,10 @@
   color: #61dafb;
 }
 
+.card {
+  display: none;
+}
+
 @keyframes App-logo-spin {
 
   from {
