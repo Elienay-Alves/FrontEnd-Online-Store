@@ -51,7 +51,6 @@ render() {
         >
           {`Quantidade disponível: ${productInfos.available_quantity}`}
         </h3>
-
       </div>
     </div>
   );
