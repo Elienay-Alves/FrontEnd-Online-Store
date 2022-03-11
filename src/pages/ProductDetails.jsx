@@ -11,6 +11,7 @@ class ProductDetails extends Component {
     super();
     this.state = {
       productInfos: '',
+      cartItems: [],
     };
   }
 
@@ -25,8 +26,15 @@ componentDidMount = async () => {
   this.setState({
     productInfos: response,
     clicked: false,
-    cartItems: [],
   });
+
+  setTimeout(() => {
+    const savedItems = localStorage.getItem('productCart');
+    const parseItem = JSON.parse(savedItems);
+    this.setState({
+      cartItems: parseItem,
+    });
+  }, TIMEOUT);
 
 //   console.log(path);
 //   console.log(await getProductFromID(path));
@@ -40,13 +48,7 @@ handleClick = async () => {
   this.setState({
     productInfos: response,
   });
-  setTimeout(() => {
-    const savedItems = localStorage.getItem('productCart');
-    const parseItem = JSON.parse(savedItems);
-    this.setState({
-      cartItems: parseItem,
-    });
-  }, TIMEOUT);
+
   localStorage.setItem('productCart', JSON.stringify([...cartItems, response]));
   this.setState({
     clicked: true,

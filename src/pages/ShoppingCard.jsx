@@ -27,6 +27,33 @@ class ShoppingCard extends React.Component {
     }, TIMEOUT);
   }
 
+  removeItem = ({ target }) => {
+    // const { cartItems } = this.state;
+    // console.log(target.id);
+    const oldList = localStorage.getItem('productCart');
+    const parseItem = JSON.parse(oldList);
+
+    const filterList = parseItem.filter((elem) => elem.id !== target.id);
+    this.setState(({
+      cartItems: filterList,
+    }));
+    localStorage.setItem('productCart', JSON.stringify([...filterList]));
+
+    console.log(filterList);
+  }
+
+  increaseItem = ({ target }) => {
+    const { cartItems } = this.state;
+    const oldList = localStorage.getItem('productCart');
+    const parseItem = JSON.parse(oldList);
+
+    const increase = parseItem.find((elem) => elem.id === target.id);
+    this.setState((before) => ({
+      cartItems: [...before.cartItems, increase],
+    }));
+    localStorage.setItem('productCart', JSON.stringify([...cartItems]))
+  }
+
   render() {
     const { cartItems } = this.state;
     const savedItems = localStorage.getItem('productCart');
@@ -40,14 +67,43 @@ class ShoppingCard extends React.Component {
           </div>
         )
           : (
-            <div className="cards-container">
+            <div>
               <Button data={ cartItems.length } />
               { cartItems.map((obj) => (
-                <Card
+                <div
                   key={ obj.id }
-                  search={ obj }
-                  onClick={ onclick }
-                />
+                  className="cards-container"
+                >
+                  <button
+                    type="button"
+                    onClick={ this.removeItem }
+                    id={ obj.id }
+                  >
+                    X
+
+                  </button>
+                  <Card
+                    search={ obj }
+                    onClick={ onclick }
+                  />
+                  <button
+                    type="button"
+                    id={ obj.id }
+                    data-testid="product-increase-quantity"
+                    onClick={ this.increaseItem }
+                  >
+                    Mais
+
+                  </button>
+                  <button
+                    type="button"
+                    id={ obj.id }
+                    data-testid="product-decrease-quantity"
+                  >
+                    Menos
+
+                  </button>
+                </div>
               ))}
             </div>
           )}
