@@ -1,5 +1,8 @@
 import React from 'react';
+import Button from '../components/Button';
 import Card from '../components/Card';
+
+const TIMEOUT = 500;
 
 class ShoppingCard extends React.Component {
   constructor() {
@@ -15,11 +18,13 @@ class ShoppingCard extends React.Component {
   }
 
   getSavedCartItems = () => {
-    const savedItems = localStorage.getItem('productCart');
-    const parseItem = JSON.parse(savedItems);
-    this.setState({
-      cartItems: parseItem,
-    });
+    setTimeout(() => {
+      const savedItems = localStorage.getItem('productCart');
+      const parseItem = JSON.parse(savedItems);
+      this.setState({
+        cartItems: parseItem,
+      });
+    }, TIMEOUT);
   }
 
   render() {
@@ -36,11 +41,12 @@ class ShoppingCard extends React.Component {
         )
           : (
             <div className="cards-container">
+              <Button data={ cartItems.length } />
               { cartItems.map((obj) => (
                 <Card
                   key={ obj.id }
                   search={ obj }
-                  onClick={ this.handleClickCard }
+                  onClick={ onclick }
                 />
               ))}
             </div>

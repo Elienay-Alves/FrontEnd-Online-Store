@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getCategories,
   getProductsfromCategory, getProductFromID } from '../services/api';
 import Card from '../components/Card';
+import Button from '../components/Button';
 
 class Categories extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Categories extends Component {
       products: [],
       clicked: false,
       addCart: [],
+      clickNum: 0,
     };
   }
 
@@ -28,11 +30,12 @@ class Categories extends Component {
 
   handleClickCard = async ({ target }) => {
     const fetch = await getProductFromID(target.id);
-    const { addCart } = this.state;
+    const { addCart, clickNum } = this.state;
     localStorage.setItem('productCart', JSON.stringify([...addCart, fetch]));
     this.setState({
       addCart: [...addCart, fetch],
       clicked: true,
+      clickNum: clickNum + 1,
     });
   }
 
@@ -49,6 +52,7 @@ class Categories extends Component {
     this.setState({
       products: results,
       clicked: true,
+
     });
   }
 
@@ -56,10 +60,14 @@ class Categories extends Component {
   // Tive que modificar a tag de Li's pra button pois precisava de alguma tag que permitia evento de click.
 
   render() {
-    const { categories, clicked, products } = this.state;
+    const { categories, clicked, products, clickNum } = this.state;
 
     return (
       <div className="categories-container">
+        <Button
+          data-testid="shopping-cart-product-quantity"
+          data={ clickNum }
+        />
         <aside className="categories">
           Categorias:
           {
@@ -83,6 +91,7 @@ class Categories extends Component {
                 key={ obj.id }
                 search={ obj }
                 onClick={ this.handleClickCard }
+                clickNum={ clickNum }
               />
             ))}
           {/* Css foi pro espaço agora, meus jovens! kkkk */}

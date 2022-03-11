@@ -54,3 +54,8 @@ code {
 .productImg {
   width: 200px;
 }
+
+.btn-container {
+  display: flex;
+  margin-left: 50px;
+}

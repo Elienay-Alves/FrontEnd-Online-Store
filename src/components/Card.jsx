@@ -3,7 +3,23 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class Card extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      value: '',
+    };
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      value: e.target.value,
+    });
+    console.log(this.props);
+  }
+
   render() {
+    const { value } = this.state;
     const { search, onClick } = this.props;
     return (
       <section
@@ -27,6 +43,11 @@ class Card extends Component {
             className="card-img"
           />
           <p>{ search.price }</p>
+          <p>
+            {' '}
+            { value }
+            {' '}
+          </p>
         </Link>
         <div>
           <button
@@ -37,7 +58,13 @@ class Card extends Component {
           >
             Add to cart
           </button>
+          <input
+            type="number"
+            value={ value }
+            onChange={ this.handleChange }
+          />
         </div>
+
       </section>
     );
   }
