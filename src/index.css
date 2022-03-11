@@ -14,6 +14,41 @@ code {
 
 .container {
   display: flex;
-  justify-content: space-between;
-  margin-right: 30%;
+  flex-direction: column-reverse;
+}
+
+.categories-container {
+  display: flex;
+
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-container {
+  width: 70%;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-left: 10%;
+}
+
+.card {
+  width: 25%;
+  height: 40vh;
+}
+
+.card-img {
+  width: 20vh;
+}
+
+.product-container {
+  display: flex;
+}
+
+.productImg {
+  width: 200px;
 }
