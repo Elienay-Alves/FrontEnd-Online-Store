@@ -5,9 +5,13 @@ class Card extends Component {
   render() {
     const { search } = this.props;
     return (
-      <section data-testid="product">
+      <section data-testid="product" className="card">
         <p className="">{ search.title }</p>
-        <img src={ search.thumbnail } alt={ search.title } />
+        <img
+          src={ search.thumbnail }
+          alt={ search.title }
+          className="card-img"
+        />
         <p>{ search.price }</p>
       </section>
     );
