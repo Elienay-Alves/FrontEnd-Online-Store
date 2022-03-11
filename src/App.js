@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import ShoppingCard from './components/ShoppingCard';
-import Categories from './components/Categories';
-import Home from './components/Home';
+import ShoppingCard from './pages/ShoppingCard';
+import Categories from './pages/Categories';
+import Home from './pages/Home';
+import ProductDetails from './pages/ProductDetails';
 
 class App extends React.Component {
   render() {
@@ -10,9 +11,23 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={ Home } />
-            <Route path="/shoppingcard" component={ ShoppingCard } />
-            <Route path="/categories" component={ Categories } />
+            <Route
+              exact
+              path="/"
+              render={ (props) => <Home { ...props } /> }
+            />
+            <Route
+              path="/shoppingcard"
+              render={ (props) => <ShoppingCard { ...props } /> }
+            />
+            <Route
+              path="/categories"
+              render={ (props) => <Categories { ...props } /> }
+            />
+            <Route
+              path="/productDetails"
+              render={ (props) => <ProductDetails { ...props } /> }
+            />
           </Switch>
         </BrowserRouter>
       </div>

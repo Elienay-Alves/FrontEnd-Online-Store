@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getCategories, getProductsfromCategory } from '../services/api';
-import Card from './Card';
+import Card from '../components/Card';
 
 class Categories extends Component {
   constructor(props) {

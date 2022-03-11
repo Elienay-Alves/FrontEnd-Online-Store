@@ -44,3 +44,11 @@ code {
 .card-img {
   width: 20vh;
 }
+
+.product-container {
+  display: flex;
+}
+
+.productImg {
+  width: 200px;
+}
