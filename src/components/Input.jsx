@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from './Button';
 import { getProductsFromTerm } from '../services/api';
 import Card from './Card';
 
@@ -55,10 +54,6 @@ class Input extends React.Component {
             Pesquisar
           </button>
         </label>
-        <div>
-
-          <Button />
-        </div>
         {xablau ? results.map((obj) => <Card search={ obj } key={ obj.id } />) : null }
       </div>
     );
