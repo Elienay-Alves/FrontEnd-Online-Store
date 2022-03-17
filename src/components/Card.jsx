@@ -27,14 +27,6 @@ class Card extends Component {
           />
           <h4>{price}</h4>
         </Link>
-        {/* <button
-          type="button"
-          data-testid="product-add-to-cart"
-          id={ id }
-          onClick={ onClick }
-        >
-          Adicionar ao carrinho
-        </button> */}
       </div>
     );
   }
