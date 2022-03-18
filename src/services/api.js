@@ -60,3 +60,10 @@ export async function getProductFromID(id) {
     return Error(err);
   }
 }
+
+export const addItem = (item) => {
+  const cart = JSON.parse(localStorage.getItem('shopping'));
+  console.log(cart);
+  const newCart = !cart ? [item] : [...cart, item];
+  localStorage.setItem('shopping', JSON.stringify(newCart));
+};
